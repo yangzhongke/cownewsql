@@ -1,0 +1,2 @@
+# cownewsql
+Sql dialect translator

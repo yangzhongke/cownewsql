@@ -1,0 +1,2393 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>第一节 简介</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	font-size:10.5pt;
+	font-family:"Times New Roman";}
+h5
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:9.0pt;
+	font-family:Arial;
+	color:black;
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:宋体;}
+ /* Page Definitions */
+ @page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+
+</head>
+
+<body lang=ZH-CN link=blue vlink=purple style='text-justify-trim:punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal><span style='font-family:宋体'>第一节</span> <span
+style='font-family:宋体'>简介</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-family:宋体'>由于种种原因，各个数据库系统的</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>语句语法以及支持的函数都不尽相同，这造成了如下两个问题：（</span><span lang=EN-US>1</span><span
+style='font-family:宋体'>）系统在多个不同数据库之间移植变得非常困难，特别是需要维护多个数据库版本的时候；（</span><span
+lang=EN-US>2</span><span style='font-family:宋体'>）开发人员必须对各种数据库的语法差异非常了解，这加大了开发难度。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-family:宋体'>虽然</span><span lang=EN-US>Hibernate</span><span
+style='font-family:宋体'>通过</span><span lang=EN-US>HQL</span><span
+style='font-family:宋体'>等技术部分的解决了跨数据库移植的问题，但是在对性能要求比较高的场合还是需要直接使用</span><span
+lang=EN-US>SQL</span><span style='font-family:宋体'>语句访问数据库的，在这种情况下如何编写能被不同数据库支持的</span><span
+lang=EN-US>SQL</span><span style='font-family:宋体'>语句就成了。目前解决这种差异的最常用的技术就是</span><span
+lang=EN-US>SQL</span><span style='font-family:宋体'>语句翻译，使用</span><span
+lang=EN-US>SQL</span><span style='font-family:宋体'>翻译器可以将</span><span
+lang=EN-US>SQL</span><span style='font-family:宋体'>语句翻译为在不同的数据库中支持的特定平台的</span><span
+lang=EN-US>SQL</span><span style='font-family:宋体'>语句。</span><span lang=EN-US>CowNewSQL</span><span
+style='font-family:宋体'>就是这样一款产品。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CowNewSQL</span><span
+style='font-family:宋体'>简化了跨数据库产品的开发，比如取当前日期在</span><span lang=EN-US>MSSQL</span><span
+style='font-family:宋体'>中是“</span><span lang=EN-US>SELECT GETDATE()</span><span
+style='font-family:宋体'>”，在</span><span lang=EN-US>MYSQL</span><span
+style='font-family:宋体'>中是“</span><span lang=EN-US>SELECT NOW()</span><span
+style='font-family:宋体'>”，在</span><span lang=EN-US>Oracle</span><span
+style='font-family:宋体'>中是“</span><span lang=EN-US>SELECT SYSDATE FROM DUAL</span><span
+style='font-family:宋体'>”，使用</span><span lang=EN-US>CowNewSQL</span><span
+style='font-family:宋体'>以后您只要使用“</span><span lang=EN-US>SELECT NOW()</span><span
+style='font-family:宋体'>”，那么</span><span lang=EN-US>CowNewSQL</span><span
+style='font-family:宋体'>就会为您自动将其翻译为对应数据库平台支持的</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>语句，而且</span><span lang=EN-US>CowNewSQL</span><span
+style='font-family:宋体'>的兼容性也非常好，比如“</span><span lang=EN-US>SELECT NOW()</span><span
+style='font-family:宋体'>”写成“</span><span lang=EN-US>SELECT GETDATE()</span><span
+style='font-family:宋体'>”同样可以被正确的翻译；取数据库前</span><span lang=EN-US>10</span><span
+style='font-family:宋体'>条记录，在</span><span lang=EN-US>MSSQL</span><span
+style='font-family:宋体'>中是“</span><span lang=EN-US>Select top 10 from T_1</span><span
+style='font-family:宋体'>”、在</span><span lang=EN-US>MYSQL</span><span
+style='font-family:宋体'>中是“</span><span lang=EN-US>SELECT&nbsp; LIMIT 0, 10 </span><span
+style='font-family:宋体'>”、在</span><span lang=EN-US>Oracle</span><span
+style='font-family:宋体'>中是“</span><span lang=EN-US>SELECT&nbsp; FROM DUAL WHERE
+ROWNUM &lt;= 10</span><span style='font-family:宋体'>”，使用</span><span lang=EN-US>CowNewSQL</span><span
+style='font-family:宋体'>以后您只要使用“</span><span lang=EN-US>Select top 10 from T_1</span><span
+style='font-family:宋体'>”，那么</span><span lang=EN-US>CowNewSQL</span><span
+style='font-family:宋体'>就会为您自动将其翻译为对应数据库平台支持的</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>语句。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CowNewSQL</span><span
+style='font-family:宋体'>还通过变通的方式对目标数据库不直接支持的语法进行了支持。比如</span><span lang=EN-US>MYSQL</span><span
+style='font-family:宋体'>是不支持“</span><span lang=EN-US>select * from t1 where fid
+in(select fid from t2 limit 0,5)</span><span style='font-family:宋体'>”这样在子查询中的</span><span
+lang=EN-US>Limit</span><span style='font-family:宋体'>语句的，</span><span
+lang=EN-US>CowNewSQL</span><span style='font-family:宋体'>通过将子查询进行二次结果集包装的方式巧妙的对其进行了支持，“</span><span
+lang=EN-US>delete from T_SaleInvoice where FId in(select top 5 FParentId from
+T_SaleInvoiceDetails)</span><span style='font-family:宋体'>”通过</span><span
+lang=EN-US>CowNewSQL</span><span style='font-family:宋体'>的翻译以后就成了“</span><span
+lang=EN-US>DELETE FROM T_SaleInvoice WHERE FId IN (select * from(SELECT
+FParentId FROM T_SaleInvoiceDetails LIMIT 0, 5 ) t_temp_sub)</span><span
+style='font-family:宋体'>”这样被</span><span lang=EN-US>MYSQL</span><span
+style='font-family:宋体'>支持的语法了；</span><span lang=EN-US>MYSQL</span><span
+style='font-family:宋体'>中没有提供计算两个日期之间月份差异的函数，</span><span lang=EN-US>CowNewSQL</span><span
+style='font-family:宋体'>通过组合其他日期函数的方式模拟了这个函数，这样使用者只要使用</span><span lang=EN-US>MONTHS_BETWEEN</span><span
+style='font-family:宋体'>函数即可了，无需关心内部的差异。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CowNewSQL</span><span
+style='font-family:宋体'>支持如下几种类型的</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>语句：</span><span lang=EN-US>CreateTable/AlterTable/DropTable/CreateIndex/DropIndex/Select/Insert/Delete/Update</span><span
+style='font-family:宋体'>；支持子查询、</span><span lang=EN-US>Join</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>Union</span><span
+style='font-family:宋体'>等高级的</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>特性；支持日期（包括取当前日期、从日期中提取任意部分、计算日期差异、日期前后推算等）、数学（包括取绝对值、取</span><span
+lang=EN-US>PI</span><span style='font-family:宋体'>值、四舍五入、对数计算、随机数等）、字符串（包括取子字符串、取字符串长度、字符串截断、大小写转换等）、基本数据处理（包括数字字符串互转、日期转字符串、非空判断等）等函数。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>第二节</span> <span lang=EN-US>CowNewSQL</span><span
+style='font-family:宋体'>支持的语法</span></p>
+
+<p class=MsoNormal><span lang=EN-US>2.1</span><span style='font-family:宋体'>、</span><span
+lang=EN-US>Create Table</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CREATE
+TABLE&nbsp; tableName ( </span></p>
+
+<p class=MsoNormal style='margin-left:31.5pt'><span lang=EN-US>columnDefinition
+[,...]</span></p>
+
+<p class=MsoNormal style='margin-left:31.5pt'><span lang=EN-US>[,PRIMARY
+KEY(column [,...])]</span></p>
+
+<p class=MsoNormal style='margin-left:31.5pt'><span lang=EN-US>[,FOREIGN
+KEY(column [,...]) REFERENCES tableName ( column [,...])]</span></p>
+
+<p class=MsoNormal style='margin-left:31.5pt'><span lang=EN-US>[UNIQUE (column
+[,...])]</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>)</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>columnDefinition</span><span
+style='font-family:宋体'>：：</span><span lang=EN-US>=columnname datatype [NOT
+NULL] [DEFAULT defaultExpr]</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; datatype</span><span
+style='font-family:宋体'>为字段类型，供支持如下的类型：</span><span lang=EN-US>&quot;int&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;integer&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;tinyint&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;smallint&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US> &quot;bit&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US> &quot;boolean&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;varchar&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;decimal&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;numeric&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;real&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;float&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;double&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;datetime&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;date&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;timestamp&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;time&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;blob&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;tinyblob&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;longblob&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;binary&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;varbinary&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;longvarbinary&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;image&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;clob&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;tinytext&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;longtext&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;text&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;longvarchar&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;char&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;nchar&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;nvarchar&quot;</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>&quot;nclob&quot;</span><span
+style='font-family:宋体'>。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-family:宋体'>例句：</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>（</span><span lang=EN-US>1</span><span
+style='font-family:宋体'>）标准</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>：</span><span lang=EN-US>create table T_Person(FId
+VARCHAR(20),FName varchar(20),FAge int,primary key FId)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MSSQLServer</span><span style='font-family:
+宋体'>的翻译结果：</span><span lang=EN-US>CREATE TABLE T_Person (FId VARCHAR(20),FName
+VARCHAR(20),FAge INT,PRIMARY KEY (FId))</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>MYSQL</span><span style='font-family:宋体'>的翻译结果：</span><span
+lang=EN-US>CREATE TABLE T_Person (FId VARCHAR(20),FName VARCHAR(20),FAge
+INT,PRIMARY KEY (FId))</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>Oracle</span><span style='font-family:宋体'>的翻译结果：</span><span
+lang=EN-US>CREATE TABLE T_Person (FId VARCHAR2(20),FName VARCHAR2(20),FAge
+NUMBER (10),PRIMARY KEY (FId))</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>（</span><span lang=EN-US>2</span><span
+style='font-family:宋体'>）标准</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>create table T_SaleInvoiceDetails(FId
+VARCHAR(20),FParentId varchar(20),FMaterialId varchar(20),FCount int default
+0,FPrice decimal(10,2),primary key FId,FOREIGN KEY FParentId REFERENCES
+T_SaleInvoice(FId),FOREIGN KEY FMaterialId REFERENCES T_Material(FId))</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MSSQLServer</span><span style='font-family:
+宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>CREATE TABLE T_SaleInvoiceDetails (FId
+VARCHAR(20),FParentId VARCHAR(20),FMaterialId VARCHAR(20),FCount INT DEFAULT
+0,FPrice NUMERIC(10,2),PRIMARY KEY (FId),FOREIGN KEY (FParentId) REFERENCES
+T_SaleInvoice(FId),FOREIGN KEY (FMaterialId) REFERENCES T_Material(FId))</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>MYSQL</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>CREATE TABLE T_SaleInvoiceDetails (FId
+VARCHAR(20),FParentId VARCHAR(20),FMaterialId VARCHAR(20),FCount INT DEFAULT
+0,FPrice DECIMAL(10,2),PRIMARY KEY (FId),FOREIGN KEY (FParentId) REFERENCES
+T_SaleInvoice(FId),FOREIGN KEY (FMaterialId) REFERENCES T_Material(FId))</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>Oracle</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>CREATE TABLE T_SaleInvoiceDetails (FId
+VARCHAR2(20),FParentId VARCHAR2(20),FMaterialId VARCHAR2(20),FCount NUMBER (10)
+DEFAULT 0,FPrice NUMERIC(10,2),PRIMARY KEY (FId),FOREIGN KEY (FParentId)
+REFERENCES T_SaleInvoice(FId),FOREIGN KEY (FMaterialId) REFERENCES
+T_Material(FId))</span></p>
+
+<p class=MsoNormal><span lang=EN-US>2.2</span><span style='font-family:宋体'>、</span><span
+lang=EN-US>DropTable</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DROP
+TABLE tableName</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>例句：</span><span lang=EN-US>drop
+table T_SaleInvoice</span></p>
+
+<p class=MsoNormal><span lang=EN-US>2.3</span><span style='font-family:宋体'>、</span><span
+lang=EN-US>Create Index</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CREATE
+INDEX indexName ON tableName ( columnName [,...] )</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>例句：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>create index idx1 on T_Person(FName)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>create index idx2 on T_Person(FName,FAge)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>2.4</span><span style='font-family:宋体'>、</span><span
+lang=EN-US>Drop Index</span></p>
+
+<p class=MsoNormal><span lang=EN-US>DROP INDEX tableName.indexName</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>例句：标准</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>：</span><span lang=EN-US>drop index T_Person.idx1</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MSSQLServer</span><span style='font-family:
+宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>DROP INDEX T_Person.idx1</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MYSQL</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>DROP INDEX idx1 ON T_Person</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>Oracle</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>DROP INDEX idx1</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>2.5</span><span style='font-family:宋体'>、</span><span
+lang=EN-US>SELECT</span></p>
+
+<p class=MsoNormal><span lang=EN-US>SELECT [DISTINCT] &nbsp;TOP N { * |
+selectList }<br>
+FROM tableList<br>
+[ WHERE condition ]<br>
+[ GROUP BY columnName [,...] ]<br>
+[ HAVING condition ]<br>
+[ ORDER BY columnName [{ASC|DESC}] [,...] ]</span></p>
+
+<p class=MsoNormal><span lang=EN-US>[UNION [ALL]] SELECT</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>tableList:<br>
+tableName [alias] [, | LEFT OUTER JOIN | INNER JOIN tableList]</span></p>
+
+<p class=MsoNormal><span lang=EN-US>selectList:<br>
+{ tableName.* | expression [ AS alias ]} [,...] </span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>例句：</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>（</span><span lang=EN-US>1</span><span
+style='font-family:宋体'>）标准</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>select trim(person.FName),bill.FNumber from
+T_SaleInvoice as bill left join T_Person person on
+bill.FSalesPersonId=person.FId</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MSSQLServer</span><span style='font-family:
+宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>SELECT
+LTRIM(RTRIM(person.FName)),bill.FNumber FROM T_SaleInvoice bill LEFT JOIN
+T_Person person ON bill.FSalesPersonId = person.FId</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>MYSQL</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>SELECT
+LTRIM(RTRIM(person.FName)),bill.FNumber FROM T_SaleInvoice bill LEFT JOIN
+T_Person person ON bill.FSalesPersonId = person.FId</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Oracle</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>SELECT
+LTRIM(RTRIM(person.FName)),bill.FNumber FROM T_SaleInvoice bill LEFT JOIN
+T_Person person ON bill.FSalesPersonId = person.FId</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>（</span><span lang=EN-US>2</span><span
+style='font-family:宋体'>）标准</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>select * from T_StockFlow where FBillId
+in('a','b') or FBillId in(select FBillId from T_StockFlow)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MSSQLServer</span><span style='font-family:
+宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>SELECT * FROM T_StockFlow WHERE FBillId
+IN&nbsp; ('a','b')&nbsp; or FBillId IN (SELECT FBillId FROM T_StockFlow)</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>MYSQL</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>SELECT * FROM T_StockFlow WHERE FBillId
+IN&nbsp; ('a','b')&nbsp; or FBillId IN (SELECT FBillId FROM T_StockFlow)</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>Oracle</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>SELECT * FROM T_StockFlow WHERE FBillId
+IN&nbsp; ('a','b')&nbsp; or FBillId IN (SELECT FBillId FROM T_StockFlow)</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>（</span><span lang=EN-US>3</span><span
+style='font-family:宋体'>）标准</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>select * from t1 union all select * from t2</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MSSQLServer</span><span style='font-family:
+宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>SELECT * FROM t1 UNION ALL SELECT * FROM t2</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>MYSQL</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>SELECT * FROM t1 UNION ALL SELECT * FROM t2</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>Oracle</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>SELECT * FROM t1 UNION ALL SELECT * FROM t2</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>（</span><span lang=EN-US>4</span><span
+style='font-family:宋体'>）标准</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>：</span><span lang=EN-US>select top 10 * from t where
+fid&lt;any(select fid from t2)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MSSQLServer</span><span style='font-family:
+宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>SELECT&nbsp; TOP 10 * FROM t WHERE fid
+&lt;&nbsp; ANY(SELECT fid FROM t2)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MYSQL</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>SELECT * FROM t WHERE fid &lt;&nbsp;
+ANY(SELECT fid FROM t2) LIMIT 0, 10 </span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>Oracle</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>SELECT * FROM t WHERE fid &lt;&nbsp;
+ANY(SELECT fid FROM t2) AND ROWNUM &lt;= 10 </span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>（</span><span lang=EN-US>5</span><span
+style='font-family:宋体'>）标准</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>select
+to_char(ceil(3333/10)),FLOOR(3.4),MOD(2,3),LOG(1),RAND(),RAND(2.0),ROUND(3.1415926,3),SIGN(3),now()</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MSSQLServer</span><span style='font-family:
+宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>SELECT CONVERT(VARCHAR,&nbsp; CEILING(3333
+/ 10) ), FLOOR(3.4) ,2 % 3, LOG(1) ,RAND(),RAND(2.0), ROUND(3.1415926,3) ,
+SIGN(3) ,GETDATE()</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MYSQL</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>SELECT CONCAT('',&nbsp; ceil(3333 / 10) ),
+FLOOR(3.4) ,MOD(2 , 3), LOG(1) ,RAND(),RAND(2.0), ROUND(3.1415926,3) , SIGN(3)
+,NOW()</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>Oracle</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>SELECT&nbsp; TO_CHAR( CEIL(3333 / 10) ) ,
+FLOOR(3.4) ,MOD(2 , 3), LN(1) ,(select&nbsp;&nbsp;
+dbms_random.value&nbsp;&nbsp; from&nbsp;&nbsp; dual),(select&nbsp;&nbsp;
+dbms_random.value*2.0&nbsp;&nbsp; from&nbsp;&nbsp; dual),ROUND(3.1415926, 3),
+SIGN(3) ,SYSDATE FROM DUAL</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>2.6 Insert</span></p>
+
+<p class=MsoNormal><span lang=EN-US>INSERT INTO tableName [ (columnName [,...]
+) ] VALUES ( value [,...] )</span></p>
+
+<p class=MsoNormal><span lang=EN-US>INSERT INTO tableName [ (columnName [,...]
+) ] SELECT ...</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>例句：（</span><span lang=EN-US>1</span><span
+style='font-family:宋体'>）标准</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>insert into T_SaleInvoice
+values('sv001','sv001','p001',{'2007-08-8'})</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MSSQLServer</span><span style='font-family:
+宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>INSERT INTO T_SaleInvoice VALUES ('sv001',
+'sv001', 'p001', '2007-08-8')</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>MYSQL</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>INSERT INTO T_SaleInvoice VALUES ('sv001',
+'sv001', 'p001', '2007-08-8')</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>Oracle</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>INSERT INTO T_SaleInvoice VALUES ('sv001',
+'sv001', 'p001', TO_DATE('2007-08-8', 'YYYY-MM-DD HH24:MI:SS'))</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>（</span><span lang=EN-US>2</span><span
+style='font-family:宋体'>）标准</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>insert into T_Person(FId,FName,FAge)
+values('p002','</span><span style='font-family:宋体'>小红</span><span lang=EN-US>',22)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MSSQLServer</span><span style='font-family:
+宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>INSERT INTO T_Person (FId, FName, FAge)
+VALUES ('p002', '</span><span style='font-family:宋体'>小红</span><span lang=EN-US>',
+22)</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>MYSQL</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>INSERT INTO T_Person (FId, FName, FAge)
+VALUES ('p002', '</span><span style='font-family:宋体'>小红</span><span lang=EN-US>',
+22)</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>Oracle</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>INSERT INTO T_Person (FId, FName, FAge)
+VALUES ('p002', '</span><span style='font-family:宋体'>小红</span><span lang=EN-US>',
+22)</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>（</span><span lang=EN-US>3</span><span
+style='font-family:宋体'>）标准</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>insert into
+T_StockFlow(FBillId,FDetailId,FDate,FBillTypeName,FAmount)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>select
+detail.FParentId,detail.FId,parent.FDate,'</span><span style='font-family:宋体'>销售发票</span><span
+lang=EN-US>',detail.FCount*detail.FPrice from T_SaleInvoiceDetails detail left
+join T_SaleInvoice parent on parent.FId=detail.FParentId</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MSSQLServer</span><span style='font-family:
+宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>INSERT INTO T_StockFlow (FBillId,
+FDetailId, FDate, FBillTypeName, FAmount) SELECT
+detail.FParentId,detail.FId,parent.FDate,'</span><span style='font-family:宋体'>销售发票</span><span
+lang=EN-US>',detail.FCount * detail.FPrice FROM T_SaleInvoiceDetails detail
+LEFT JOIN T_SaleInvoice parent ON parent.FId = detail.FParentId</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>MYSQL</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>INSERT INTO T_StockFlow (FBillId,
+FDetailId, FDate, FBillTypeName, FAmount) SELECT
+detail.FParentId,detail.FId,parent.FDate,'</span><span style='font-family:宋体'>销售发票</span><span
+lang=EN-US>',detail.FCount * detail.FPrice FROM T_SaleInvoiceDetails detail
+LEFT JOIN T_SaleInvoice parent ON parent.FId = detail.FParentId</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>Oracle</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>INSERT INTO T_StockFlow (FBillId,
+FDetailId, FDate, FBillTypeName, FAmount) SELECT detail.FParentId,detail.FId,parent.FDate,'</span><span
+style='font-family:宋体'>销售发票</span><span lang=EN-US>',detail.FCount *
+detail.FPrice FROM T_SaleInvoiceDetails detail LEFT JOIN T_SaleInvoice parent
+ON parent.FId = detail.FParentId</span></p>
+
+<p class=MsoNormal><span lang=EN-US>2.7 Delete</span></p>
+
+<p class=MsoNormal><span lang=EN-US>DELETE [*] FROM tableName<br>
+[ WHERE condition ]</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>（</span><span lang=EN-US>1</span><span
+style='font-family:宋体'>）标准</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>delete from T_SaleInvoiceDetails where FCount=?</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MSSQLServer</span><span style='font-family:
+宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>DELETE FROM T_SaleInvoiceDetails WHERE
+FCount = ?</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>MYSQL</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>DELETE FROM T_SaleInvoiceDetails WHERE
+FCount = ?</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>Oracle</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>DELETE FROM T_SaleInvoiceDetails WHERE
+FCount = ?</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>（</span><span lang=EN-US>2</span><span
+style='font-family:宋体'>）标准</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>delete * from T_SaleInvoiceDetails where
+FCount&lt;&gt;0 or FPrice!=0</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MSSQLServer</span><span style='font-family:
+宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>DELETE FROM T_SaleInvoiceDetails WHERE
+FCount &lt;&gt; 0 or FPrice &lt;&gt; 0</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>MYSQL</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>DELETE FROM T_SaleInvoiceDetails WHERE
+FCount &lt;&gt; 0 or FPrice &lt;&gt; 0</span></p>
+
+<p class=MsoNormal></p>
+
+<p class=MsoNormal><span lang=EN-US>Oracle</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>DELETE FROM T_SaleInvoiceDetails WHERE
+FCount &lt;&gt; 0 or FPrice &lt;&gt; 0</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>（</span><span lang=EN-US>3</span><span
+style='font-family:宋体'>）标准</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>delete from T_SaleInvoice where FId
+in(select FParentId from T_SaleInvoiceDetails)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MSSQLServer</span><span style='font-family:
+宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>DELETE FROM T_SaleInvoice WHERE FId IN
+(SELECT FParentId FROM T_SaleInvoiceDetails)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MYSQL</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>DELETE FROM T_SaleInvoice WHERE FId IN (SELECT
+FParentId FROM T_SaleInvoiceDetails)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Oracle</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>DELETE FROM T_SaleInvoice WHERE FId IN
+(SELECT FParentId FROM T_SaleInvoiceDetails)</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>八、</span><span lang=EN-US>Update</span></p>
+
+<p class=MsoNormal><span lang=EN-US>UPDATE tableName<br>
+SET columnName=expression [,...]<br>
+[ WHERE condition ]</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>例句：</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>（</span><span lang=EN-US>1</span><span
+style='font-family:宋体'>）标准</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>update T_SaleInvoice set
+FDate=DateAdd(dd,-1,Now())</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MSSQLServer</span><span style='font-family:
+宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>UPDATE T_SaleInvoice SET FDate =
+DATEADD(dd, -1, GETDATE())</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>MYSQL</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>UPDATE T_SaleInvoice SET FDate =
+DATE_ADD(NOW(), INTERVAL -1 DAY)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Oracle</span><span style='font-family:宋体'>的翻译结果：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>UPDATE T_SaleInvoice SET FDate = (SYSDATE +
+TRUNC(-1))</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>第三节</span> <span
+style='font-family:宋体'>支持的函数</span></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=643
+ style='width:482.4pt;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>函数名</span><span lang=EN-US>(</span><span
+  style='font-family:宋体'>别名</span><span lang=EN-US>)</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>说明</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>例子</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ABS</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>绝对值</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ABS(-1)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ACOS</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>反余弦</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ACOS(1)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ADD_DAYS</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>ADDDAYS</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>将日期增加指定个天数</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ADDDAYS (now(),3)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ADD_HOURS</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>ADDHOURS</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>将日期增加指定个小时数</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ADDHOURS (now(),3)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ADD_MINUTES</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>ADDMINUTES</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>将日期增加指定个分钟数</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ADDMINUTES (now(),3)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ADD_MONTHS</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>将日期增加指定个月数</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ADD_MONTHS(now(),3)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ADD_SECONDS</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>ADDSECONDS</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>将日期增加指定个秒数</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ADDSECONDS (now(),3)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ADD_YEARS</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>ADDYEARS</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>将日期增加指定个年数</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ADDYEARS(now(),3)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ASCII</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>取得字符的</span><span lang=EN-US>ASCII</span><span
+  style='font-family:宋体'>值。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ASCII(‘a’)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ASIN</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>反正弦</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ASIN(1)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ATAN</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>反正切</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ATAN(1)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ATN2/ATAN2</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>反正切</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ATAN2(1,2)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>AVG</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>聚合函数，返回表达式的平均值。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>AVG(FCount)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>CEILING/CEIL</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回大于或等于所给数字表达式的最小整数。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>CEIL(2.3)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>CHARINDEX</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回字符串中指定表达式的起始位置。</span><span
+  lang=EN-US>CHARINDEX ( expression1 , expression2)</span><span
+  style='font-family:宋体'>。</span><span lang=EN-US>expression1</span><span
+  style='font-family:宋体'>一个表达式，其中包含要寻找的字符的次序。</span><span lang=EN-US>expression2</span><span
+  style='font-family:宋体'>一个表达式，通常是一个用于搜索指定序列的列。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>CHARINDEX(‘verycd’,’w’)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>CHR</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>取得数字对应的字符（</span><span
+  lang=EN-US>ASCII</span><span style='font-family:宋体'>的反函数）</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>CHR(80)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>CONCAT</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>连接两个字符串。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>CONCAT(‘hi’,’world’)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>CONVERT</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>进行数值类型转换。格式</span><span
+  lang=EN-US>CONVERT(</span><span style='font-family:宋体'>类型</span><span
+  lang=EN-US>,</span><span style='font-family:宋体'>值</span><span lang=EN-US>)</span><span
+  style='font-family:宋体'>，“类型”可取值为：</span><span lang=EN-US>CHAR</span><span
+  style='font-family:宋体'>、</span><span lang=EN-US>VARCHAR</span><span
+  style='font-family:宋体'>、</span><span lang=EN-US>NCHAR</span><span
+  style='font-family:宋体'>、</span><span lang=EN-US>NVARCHAR</span><span
+  style='font-family:宋体'>、</span><span lang=EN-US>DATETIME</span><span
+  style='font-family:宋体'>、</span><span lang=EN-US>DATE</span><span
+  style='font-family:宋体'>、</span><span lang=EN-US>INT</span><span
+  style='font-family:宋体'>、</span><span lang=EN-US>DECIMAL</span><span
+  style='font-family:宋体'>。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>CONVERT</span><span style='font-family:
+  宋体'>（‘</span><span lang=EN-US>INT</span><span style='font-family:宋体'>’</span><span
+  lang=EN-US>,’3’</span><span style='font-family:宋体'>）、</span><span lang=EN-US>CONVERT</span><span
+  style='font-family:宋体'>（‘</span><span lang=EN-US>DATE</span><span
+  style='font-family:宋体'>’</span><span lang=EN-US>,’2008-08-08’</span><span
+  style='font-family:宋体'>）、</span><span lang=EN-US>CONVERT</span><span
+  style='font-family:宋体'>（‘</span><span lang=EN-US>VARCHAR</span><span
+  style='font-family:宋体'>’</span><span lang=EN-US>,3</span><span
+  style='font-family:宋体'>）</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>COS</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>余弦</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>COS(1)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>COT</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>余切</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>COT(1)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>COUNT</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>聚合函数，返回组中项目的数量。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>COUNT(*)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>CURDATE</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>取当前日期</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>CURDATE()</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>CURTIME</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>去当前时间</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>CURTIME()</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>DATEADD</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>DATE_ADD</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>在向指定日期加上一段时间的基础上，返回新的</span><span
+  lang=EN-US> datetime </span><span style='font-family:宋体'>值。</span><span
+  lang=EN-US>DATEADD ( datepart , number, date )</span><span style='font-family:
+  宋体'>。</span><span lang=EN-US>datepart</span><span style='font-family:宋体'>是规定应向日期的哪一部分返回新值的参数，有如下取值“</span><span
+  lang=EN-US>Year</span><span style='font-family:宋体'>（缩写</span><span
+  lang=EN-US>yy, yyyy</span><span style='font-family:宋体'>）”、“</span><span
+  lang=EN-US>quarter</span><span style='font-family:宋体'>（缩写</span><span
+  lang=EN-US>qq, q</span><span style='font-family:宋体'>）”</span> <span
+  style='font-family:宋体'>、“</span><span lang=EN-US>Month</span><span
+  style='font-family:宋体'>（缩写</span><span lang=EN-US>mm, m</span><span
+  style='font-family:宋体'>）”</span> <span style='font-family:宋体'>、“</span><span
+  lang=EN-US>dayofyear</span><span style='font-family:宋体'>（缩写</span><span
+  lang=EN-US>dy, y</span><span style='font-family:宋体'>）”</span> <span
+  style='font-family:宋体'>、“</span><span lang=EN-US>Day</span><span
+  style='font-family:宋体'>（缩写</span><span lang=EN-US>dd, d</span><span
+  style='font-family:宋体'>）”</span> <span style='font-family:宋体'>、“</span><span
+  lang=EN-US>Week</span><span style='font-family:宋体'>（缩写</span><span
+  lang=EN-US>wk, ww</span><span style='font-family:宋体'>）”</span> <span
+  style='font-family:宋体'>、“</span><span lang=EN-US>Hour</span><span
+  style='font-family:宋体'>（缩写</span><span lang=EN-US>hh</span><span
+  style='font-family:宋体'>）”</span> <span style='font-family:宋体'>、“</span><span
+  lang=EN-US>minute</span><span style='font-family:宋体'>（缩写</span><span
+  lang=EN-US>mi, n</span><span style='font-family:宋体'>）”</span> <span
+  style='font-family:宋体'>、“</span><span lang=EN-US>second</span><span
+  style='font-family:宋体'>（缩写</span><span lang=EN-US>ss, s</span><span
+  style='font-family:宋体'>）”</span> <span style='font-family:宋体'>、“</span><span
+  lang=EN-US>millisecond</span><span style='font-family:宋体'>（缩写</span><span
+  lang=EN-US>ms</span><span style='font-family:宋体'>）”。</span><span lang=EN-US>number</span><span
+  style='font-family:宋体'>是用来增加</span><span lang=EN-US> datepart </span><span
+  style='font-family:宋体'>的值。</span><span lang=EN-US>date</span><span
+  style='font-family:宋体'>是返回</span><span lang=EN-US> datetime </span><span
+  style='font-family:宋体'>或</span><span lang=EN-US> smalldatetime </span><span
+  style='font-family:宋体'>值或日期格式字符串的表达式。</span></p>
+  <p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>DateADD(month,3,Now())</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>DATEDIFF</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>DATE_DIFF</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回跨两个指定日期的日期和时间边界数。</span><span
+  lang=EN-US>DATEADD </span><span style='font-family:宋体'>。</span><span
+  lang=EN-US>datepart</span><span style='font-family:宋体'>是规定了应在日期的哪一部分计算差额的参数，取值同“</span><span
+  lang=EN-US>DATEADD</span><span style='font-family:宋体'>”。</span><span
+  lang=EN-US>startdate</span><span style='font-family:宋体'>是计算的开始日期。</span><span
+  lang=EN-US>enddat</span><span style='font-family:宋体'>是计算的终止日期。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>DATEDIFF(day, pubdate, getdate())</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>DATENAME</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回代表指定日期的指定日期部分的字符串。</span><span
+  lang=EN-US>DATENAME ( datepart , date )</span><span style='font-family:宋体'>。</span><span
+  lang=EN-US>datepart</span><span style='font-family:宋体'>是指定应返回的日期部分的参数，取值同“</span><span
+  lang=EN-US>DATEADD</span><span style='font-family:宋体'>”。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>DATENAME</span><span style='font-family:
+  宋体'>（</span><span lang=EN-US>q,now()</span><span style='font-family:宋体'>）</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>DAYNAME</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回指定日期是星期几。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>DAYNAME(bdate)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>DAYOFMONTH</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回代表指定日期的在一个月中的天数。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>DAYOFMONTH(now())</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>DAYOFWEEK</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回代表指定日期的在一周中的天数。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>DAYOFWEEK (now())</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>DAYOFYEAR</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回代表指定日期的在一年中的天数。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>DAYOFYEAR (now())</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>DAYS_BETWEEN/ DAYSBETWEEN</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回两个日期之间的天数间隔</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>DAYSBETWEEN(d2,d2)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>DEGREE/DEGREES</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>弧度转角度</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>DEGREE(2)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>EXP</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>自然指数</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>EXP(2)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>FLOOR</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回小于或等于所给数字表达式的最大整数。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>FLOOR(-2.4)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>HOUR</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回指定日期的小时部分</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>HOUR(now())</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ISNULL</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>NVL</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>使用指定的替换值替换</span><span
+  lang=EN-US> NULL</span><span style='font-family:宋体'>。</span><span lang=EN-US>ISNULL
+  ( check_expression , replacement_value ) </span><span style='font-family:
+  宋体'>：</span><span lang=EN-US>check_expression</span><span style='font-family:
+  宋体'>将被检查是否为</span><span lang=EN-US> NULL</span><span style='font-family:宋体'>的表达式；</span><span
+  lang=EN-US>replacement_value </span><span style='font-family:宋体'>在</span><span
+  lang=EN-US> check_expression </span><span style='font-family:宋体'>为</span><span
+  lang=EN-US> NULL</span><span style='font-family:宋体'>时将返回的表达式。如果</span><span
+  lang=EN-US> check_expression </span><span style='font-family:宋体'>不为</span><span
+  lang=EN-US> NULL</span><span style='font-family:宋体'>，那么返回该表达式的值；否则返回</span><span
+  lang=EN-US> replacement_value</span><span style='font-family:宋体'>。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ISNULL(f1,f2)</span><span
+  style='font-family:宋体'>、</span><span lang=EN-US>NVL (f1,f2)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>LCASE</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>LOWER</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回指定字符串的小写形式。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>LCASE(‘aBcD’)</span><span
+  style='font-family:宋体'>、</span><span lang=EN-US>LOWER(‘1AAcB’)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>LEFTSTR</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回从字符串左边开始指定个数的字符。</span><span
+  lang=EN-US>LEFT ( character_expression , integer_expression ) </span><span
+  style='font-family:宋体'>。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>LEFTSTR(‘abcd’,2)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>LENGTH</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>LEN</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回给定字符串表达式的字符（而不是字节）个数。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>LENGTH(‘123’)</span><span
+  style='font-family:宋体'>、</span><span lang=EN-US>LEN(‘012’)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>LOG</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>求自然对数</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>LOG(3)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>LOG10</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>求以</span><span lang=EN-US>10</span><span
+  style='font-family:宋体'>为低的对数</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>LOG10(4)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>LTRIM</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>删除起始空格后返回字符表达式。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>LTRIM(‘&nbsp; aa f&nbsp; ’)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>MAX</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>聚合函数，返回表达式的最大值。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>MAX(price)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>MIN</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>聚合函数，返回表达式的最小值。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>MIN (price)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>MINUTE</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回指定日期的分钟部分</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>MINUTE (now())</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>MOD</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>整除</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>3 MOD 4</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>MONTH</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回指定日期的月份部分</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>MONTH (now())</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>MONTHNAME</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回指定日期的月份的名称</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>MONTHNAME (now())</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>MONTHS_BETWEEN</span><span
+  style='font-family:宋体'>、</span><span lang=EN-US>MONTHSBETWEEN</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回两个日期之间的月份间隔</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>MONTHS_BETWEEN(d1,d2)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>NOW</span><span style='font-family:宋体'>、</span><span
+  lang=EN-US>GETDATE</span><span style='font-family:宋体'>、</span><span
+  lang=EN-US>TODAY</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>取得当前时间</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>NOW()</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>NULLIF</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>如果两个指定的表达式相等，则返回空值。</span><span
+  lang=EN-US>NULLIF ( expression , expression )</span><span style='font-family:
+  宋体'>：如果两个表达式不相等，</span><span lang=EN-US>NULLIF </span><span style='font-family:
+  宋体'>返回第一个</span><span lang=EN-US> expression </span><span style='font-family:
+  宋体'>的值。如果相等，</span><span lang=EN-US>NULLIF </span><span style='font-family:
+  宋体'>返回第一个</span><span lang=EN-US> expression </span><span style='font-family:
+  宋体'>类型的空值。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>NULLIF(f1</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>f2)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>PI</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>取圆周率</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>PI()</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>POWER/ POW</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>求</span><span lang=EN-US>a</span><span
+  style='font-family:宋体'>的</span><span lang=EN-US>b</span><span
+  style='font-family:宋体'>次方</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>POWER(3,5)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>QUARTER</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回指定日期的季度部分</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>QUARTER(now())</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>RADIANS</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>角度转弧度</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>RADIANS(3)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>RAND</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>取得随机数。如果没有参数，则返回</span><span
+  lang=EN-US>0..1</span><span style='font-family:宋体'>之间的一个随机数，如果有参数则返回大于</span><span
+  lang=EN-US>0</span><span style='font-family:宋体'>、小于指定参数的一个随机数。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>RAND()</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>RAND(108)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>REPLACE</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>用第三个表达式替换第一个字符串表达式中出现的所有第二个给定字符串表达式。</span><span
+  lang=EN-US>REPLACE ( 'string_expression1' , 'string_expression2' ,
+  'string_expression3' )</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>REPLACE(‘abc%123%www’,’%’,’@’)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>RIGHTSTR</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回字符串中从右边开始指定个数的</span><span
+  lang=EN-US> integer_expression </span><span style='font-family:宋体'>字符。</span><span
+  lang=EN-US>RIGHT ( character_expression , integer_expression )</span><span
+  style='font-family:宋体'>。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>RIGHTSTR(‘aaaa’,2)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ROUND</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>四舍五入</span><span lang=EN-US>,</span><span
+  style='font-family:宋体'>第一个参数表示要进行四舍五入的值，第二个表示要取的精度</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>ROUND(3.38332,3)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>RTRIM</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>截断所有尾随空格后返回一个字符串。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>RTRIM (‘&nbsp; aa f&nbsp; ’)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>SECOND</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回指定日期的秒部分</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>SECOND (now())</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>SIGN</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>取一个数的符号，如果此数为正数则返回</span><span
+  lang=EN-US>1</span><span style='font-family:宋体'>，为负数则返回</span><span
+  lang=EN-US>-1</span><span style='font-family:宋体'>，为</span><span lang=EN-US>0</span><span
+  style='font-family:宋体'>则返回</span><span lang=EN-US>0.</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>SIGN(-8)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>SIN</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>正弦</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>SIN(3)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>SOUNDEX</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回由四个字符组成的代码</span><span
+  lang=EN-US> (SOUNDEX) </span><span style='font-family:宋体'>以评估两个字符串的相似性。</span><span
+  lang=EN-US>SOUNDEX ( character_expression ) </span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>SOUNDEX(‘cownew’)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>SQRT</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>开方</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>SQRT(3)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>SUBSTRING</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>SUBSTR</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回字符串表达式的一部分。</span><span
+  lang=EN-US>SUBSTRING ( expression , start , length )</span><span
+  style='font-family:宋体'>：</span><span lang=EN-US>expression</span><span
+  style='font-family:宋体'>是字符串表达式；</span><span lang=EN-US>start</span><span
+  style='font-family:宋体'>是一个整数，指定子串的开始位置；</span><span lang=EN-US>length</span><span
+  style='font-family:宋体'>是一个整数，指定子串的长度（要返回的字符数或字节数）。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>SUBSTRING(‘ok aha’,1,3)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>SUM</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>聚合函数，返回表达式中所有值的和。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>SUM(amount)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>TAN</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>正切</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>TAN(1)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>TO_DATE</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>TODATE</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>将指定的数值转换为日期类型</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>TODATE(‘2008-08-08’)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>TO_INT</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>TOINT</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>将指定的值转换为整数类型。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>TOINT(3.14)</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>TO_INT(‘3.65’)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>TO_NUMBER</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>TONUMBER</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>将指定的值转换为数值类型。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>TO_NUMBER(‘3.14’)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>TOCHAR</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>TO_CHAR</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>将指定的值转换为字符串类型。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>TOCHAR(33)</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>TO_CHAR (33)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>TRIM</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>截断开头和结尾的空格后返回一个字符串。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>TRIM (‘&nbsp; aa f&nbsp; ’)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>UCASE</span><span style='font-family:
+  宋体'>、</span><span lang=EN-US>UPPER</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回指定字符串的大写形式。</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>UCASE (‘aBcD’)</span><span
+  style='font-family:宋体'>、</span><span lang=EN-US>UPPER (‘1AAcB’)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>WEEK</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回指定日期的在一年中的第几周</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>WEEK (now())</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=127 valign=top style='width:95.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>YEAR</span></p>
+  </td>
+  <td width=384 valign=top style='width:288.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span style='font-family:宋体'>返回指定日期的年部分，</span><span
+  lang=EN-US>4</span><span style='font-family:宋体'>位数</span></p>
+  </td>
+  <td width=132 valign=top style='width:99.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US>YEAR (now())</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-family:宋体'>第四节</span> <span lang=EN-US>CowNewSQL</span><span
+style='font-family:宋体'>特色语法介绍</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CowNewSQL</span><span
+style='font-family:宋体'>的语法和主流的</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>语法基本兼容，包括标识符、数字、字符串的格式等等，关于这些内容请参考</span><span
+lang=EN-US>SQL</span><span style='font-family:宋体'>语法手册。下面仅介绍</span><span
+lang=EN-US>CowNewSQL</span><span style='font-family:宋体'>的特色语法。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>4.1</span><span style='font-family:宋体'>、日期常量的表示</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-family:宋体'>各个不同数据库中对日期常量的表示各不相同，如果混用的话很容易造成数据错误，因此</span><span
+lang=EN-US>CowNewSQL</span><span style='font-family:宋体'>采用了特殊的标识来表示日期常量，格式如下：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>{‘</span><span style='font-family:宋体'>日期值</span><span
+lang=EN-US>’}</span><span style='font-family:宋体'>。举例：</span><span lang=EN-US>{‘2008-08-08’}</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>{‘2007-07-06’}</span><span
+style='font-family:宋体'>。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>4.2</span><span style='font-family:宋体'>、字符串的连接</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-family:宋体'>各个不同数据库中字符串的连接也是不同的，如果混用的话很容易造成数据错误，因此</span><span
+lang=EN-US>CowNewSQL</span><span style='font-family:宋体'>采用了特殊的方式来表示字符串的连接，格式如下：</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>字符串</span><span lang=EN-US>1||</span><span
+style='font-family:宋体'>字符串</span><span lang=EN-US>2</span><span
+style='font-family:宋体'>。举例：</span><span lang=EN-US>’abce’||’1235’</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>f1||’.exe’</span><span
+style='font-family:宋体'>。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>4.3</span><span style='font-family:宋体'>、</span><span
+lang=EN-US>Show</span><span style='font-family:宋体'>语句的支持</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-family:宋体'>自从</span><span lang=EN-US>CowNewSQL2.1</span><span
+style='font-family:宋体'>开始，我们提供了对</span><span lang=EN-US>Show</span><span
+style='font-family:宋体'>语句的支持，主要用来查看系统中的表定义、字段定义、支持的函数等。由于各个数据库中取得这些元信息的方式各有不同，经常需要关联查询很多系统表才能搬到，为了简化用户的使用，我们创新性的设计了</span><span
+lang=EN-US>Show</span><span style='font-family:宋体'>系列语句，这样您至少使用非常短的语句就可以实现以前需要编写很复杂的语句才能实现的功能。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Show</span><span
+style='font-family:宋体'>语句语法列表：</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>（</span><span lang=EN-US>1</span><span
+style='font-family:宋体'>）</span><span lang=EN-US>show &nbsp;tables</span><span
+style='font-family:宋体'>：显示系统中默认</span><span lang=EN-US>Schema</span><span
+style='font-family:宋体'>下的所有表的表名。</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>（</span><span lang=EN-US>2</span><span
+style='font-family:宋体'>）</span><span lang=EN-US>show &nbsp;tables Schema</span><span
+style='font-family:宋体'>名：显示指定</span><span lang=EN-US>Schema</span><span
+style='font-family:宋体'>下的所有表的表名。例子：</span><span lang=EN-US>show tables DEMO</span><span
+style='font-family:宋体'>。</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>（</span><span lang=EN-US>3</span><span
+style='font-family:宋体'>）</span><span lang=EN-US>show &nbsp;functions</span><span
+style='font-family:宋体'>：显示系统支持的函数的列表。</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>（</span><span lang=EN-US>4</span><span
+style='font-family:宋体'>）</span><span lang=EN-US>show &nbsp;functioncolumns</span><span
+style='font-family:宋体'>：显示系统支持的函数参数以及返回值的详细说明。</span></p>
+
+<p class=MsoNormal style='margin-left:5.25pt;text-indent:-5.25pt'><span
+style='font-family:宋体'>（</span><span lang=EN-US>5</span><span style='font-family:
+宋体'>）</span><span lang=EN-US>show &nbsp;tablecolumns </span><span
+style='font-family:宋体'>表名：显示指定表的数据列信息。例子：</span><span lang=EN-US>show &nbsp;tablecolumns
+table_1</span><span style='font-size:10.0pt;font-family:宋体;color:#2A00FF'>。</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>第五节</span> <span lang=EN-US>CowNewSQL</span><span
+style='font-family:宋体'>的嵌入方式使用方法</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-family:宋体'>将</span><span lang=EN-US>retrotranslator-runtime-1.0.7.jar</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>antlr.jar</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>commons-lang-2.3.jar</span><span
+style='font-family:宋体'>以及</span><span lang=EN-US>cownewsql.jar</span><span
+style='font-family:宋体'>加入</span><span lang=EN-US>CLASSPATH</span><span
+style='font-family:宋体'>，调用类</span><span lang=EN-US>com.cownew.cownewsql.imsql.common.DialectManager</span><span
+style='font-family:宋体'>的</span><span lang=EN-US>createTranslator</span><span
+style='font-family:宋体'>方法创建一个翻译器，然后调用翻译器的</span><span lang=EN-US>translateSQL</span><span
+style='font-family:宋体'>方法来将标准</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>语句翻译成特定数据库平台的</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>语句。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DialectManager</span><span
+style='font-family:宋体'>的</span><span lang=EN-US>createTranslator</span><span
+style='font-family:宋体'>方法接受一个字符串类型的参数来指定目标数据库的类型，目前接受四个值</span><span
+lang=EN-US>”MSSQLServer”</span><span style='font-family:宋体'>、</span><span
+lang=EN-US>”MYSQL”</span><span style='font-family:宋体'>、“</span><span
+lang=EN-US>DB2</span><span style='font-family:宋体'>”和</span><span lang=EN-US>”Oracle”</span><span
+style='font-family:宋体'>。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-family:宋体'>由于被翻译的</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>语句有可能是多句，所以翻译器的</span><span lang=EN-US>translateSQL</span><span
+style='font-family:宋体'>方法返回值为字符串数组，每个数据元素表示一个翻译后的语句。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体'>举例：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><b><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:#7F0055'>import</span></b><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>
+com.cownew.cownewsql.imsql.ISQLTranslator;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><b><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:#7F0055'>import</span></b><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>
+com.cownew.cownewsql.imsql.common.DataBaseTypeEnum;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><b><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:#7F0055'>import</span></b><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>
+com.cownew.cownewsql.imsql.common.DialectManager;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><b><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:#7F0055'>import</span></b><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>
+com.cownew.cownewsql.imsql.common.TranslateException;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><b><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:#7F0055'>public</span></b><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'> </span><b><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:#7F0055'>class</span></b><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'> Main</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>{</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>&nbsp;&nbsp;&nbsp; </span><b><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:#7F0055'>public</span></b><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'> </span><b><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:#7F0055'>static</span></b><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'> </span><b><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:#7F0055'>void</span></b><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>
+main(String[] args) </span><b><span lang=EN-US style='font-size:10.0pt;
+font-family:"Courier New";color:#7F0055'>throws</span></b><span lang=EN-US
+style='font-size:10.0pt;font-family:"Courier New";color:black'>
+TranslateException</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>&nbsp;&nbsp;&nbsp; {</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ISQLTranslator
+tx = DialectManager</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .<i>createTranslator</i>(“</span><i><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:#0000C0'>MYSQL</span></i><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>”);</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String[]
+venderSQLs;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; venderSQLs
+= tx.translateSQL(</span><span lang=EN-US style='font-size:10.0pt;font-family:
+"Courier New";color:#2A00FF'>&quot;select top 10 * from t&quot;</span><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>);</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.</span><i><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:#0000C0'>out</span></i><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>.println(</span><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:#2A00FF'>&quot;</span><span
+style='font-size:10.0pt;font-family:宋体;color:#2A00FF'>翻译后的</span><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:#2A00FF'>SQL:&quot;</span><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'> +
+venderSQLs[0]);</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>&nbsp;&nbsp;&nbsp; }</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>}</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>&nbsp;&nbsp;&nbsp; </span><span
+style='font-size:10.0pt;font-family:宋体;color:black'>运行结果：翻译后的</span><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black'>SQL:SELECT
+* FROM t LIMIT 0, 10</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-family:宋体'>更多例子请参考</span><span lang=EN-US>com.cownew.cownewsql.imsql.DBTestCase</span><span
+style='font-family:宋体'>类的源码。</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>第六章</span><span lang=EN-US>
+CowNewSQL</span><span style='font-family:宋体'>的</span><span lang=EN-US>JDBC</span><span
+style='font-family:宋体'>驱动</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-family:宋体'>自从</span><span lang=EN-US>CowNewSQL2.1</span><span
+style='font-family:宋体'>开始，我们提供了以</span><span lang=EN-US>JDBC</span><span
+style='font-family:宋体'>驱动方式使用的支持（支持最新的</span><span lang=EN-US>JDBC4.0</span><span
+style='font-family:宋体'>标准）。通过这种方式用户无需修改系统的任何代码，只要修改原有的</span><span lang=EN-US>JDBC</span><span
+style='font-family:宋体'>连接字符串就可以轻松的将</span><span lang=EN-US>CowNewSQL</span><span
+style='font-family:宋体'>融入系统，使用</span><span lang=EN-US>CowNewSQL</span><span
+style='font-family:宋体'>的</span><span lang=EN-US>JDBC</span><span
+style='font-family:宋体'>驱动后系统中所有的</span><span lang=EN-US>SQL</span><span
+style='font-family:宋体'>语句在送到数据库系统中执行前都将会自动进行翻译。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CowNewSQL</span><span
+style='font-family:宋体'>的</span><span lang=EN-US>JDBC</span><span
+style='font-family:宋体'>驱动类为：</span><span lang=EN-US>com.cownew.cownewsql.imsql.jdbc.DBDriver</span><span
+style='font-family:宋体'>；连接字符串格式为：</span><span lang=EN-US>jdbc:cownewsql:</span><span
+style='font-family:宋体'>目标数据库类型</span><span lang=EN-US>:</span><span
+style='font-family:宋体'>目标数据库</span><span lang=EN-US>JDBC</span><span
+style='font-family:宋体'>驱动类</span><span lang=EN-US>:</span><span
+style='font-family:宋体'>原</span><span lang=EN-US>JDBC</span><span
+style='font-family:宋体'>连接字符串。</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>使用方式举例：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-family:宋体'>原有程序连接到</span><span lang=EN-US>Oracle</span><span
+style='font-family:宋体'>数据库，使用的</span><span lang=EN-US>Oracle</span><span
+style='font-family:宋体'>驱动类为</span><span lang=EN-US>oracle.jdbc.driver.OracleDriver</span><span
+style='font-family:宋体'>，</span><span lang=EN-US>JDBC</span><span
+style='font-family:宋体'>连接字符串为：</span><span lang=EN-US>jdbc:oracle:thin:@192.168.88.128:1521:XE</span><span
+style='font-family:宋体'>。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-family:宋体'>我们只要将</span><span lang=EN-US>CowNewSQL</span><span
+style='font-family:宋体'>的</span><span lang=EN-US>Jar</span><span
+style='font-family:宋体'>包（包括</span><span lang=EN-US>cownewsql***.jar</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>antlr.jar</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>commons-lang**.jar</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>retrotranslator-runtime**.jar</span><span
+style='font-family:宋体'>等）加入程序的</span><span lang=EN-US>ClassPath</span><span
+style='font-family:宋体'>，然后修改使用的数据库驱动为：</span><span lang=EN-US>com.cownew.cownewsql.imsql.jdbc.DBDriver</span><span
+style='font-family:宋体'>，然后修改</span><span lang=EN-US>JDBC</span><span
+style='font-family:宋体'>连接字符串为：</span><span lang=EN-US>jdbc:cownewsql:oracle:oracle.jdbc.driver.OracleDriver:jdbc:oracle:thin:@192.168.88.128:1521:XE</span><span
+style='font-family:宋体'>。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-family:宋体'>这样我们无需修改任何代码就将</span><span lang=EN-US>CowNewSQL</span><span
+style='font-family:宋体'>翻译器轻松的植入了原有系统。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>更新日志：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>2.1:</span><span style='font-family:宋体'>增加</span><span
+lang=EN-US>JDBC</span><span style='font-family:宋体'>驱动的支持、增加</span><span
+lang=EN-US>show</span><span style='font-family:宋体'>语句支持、增加</span><span
+lang=EN-US>Alter table</span><span style='font-family:宋体'>语句的支持、</span><span
+lang=EN-US>Convert</span><span style='font-family:宋体'>转型函数在各个数据库中取值范围的一致性、改进了方言管理器的实现机制。</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+style='font-size:15.0pt'>CowNew</span><span style='font-size:15.0pt;font-family:
+宋体'>开源团队</span><span style='font-size:15.0pt'> </span><span style='font-size:
+15.0pt;font-family:宋体'>打造精品</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+style='font-size:15.0pt'><a href="http://www.cownew.com/">http://www.cownew.com</a></span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>团队目前产品：</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>核心组件：</span><span lang=EN-US>CowNewSQL</span><span
+style='font-family:宋体'>、</span><span lang=EN-US>CowNewStudio</span><span
+style='font-family:宋体'>（</span><span lang=EN-US>Hibernate</span><span
+style='font-family:宋体'>建模工具）。</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>开发案例：</span><span lang=EN-US>CowNewPIS</span><span
+style='font-family:宋体'>。</span></p>
+
+<p class=MsoNormal><span style='font-family:宋体'>书籍：《</span><span lang=EN-US>J2EE</span><span
+style='font-family:宋体'>开发全程实录》、《自己动手写开发工具》。</span></p>
+
+</div>
+
+</body>
+
+</html>

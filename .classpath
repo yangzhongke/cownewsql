@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="testcase"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/commons-lang-2.3.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3.8.1"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JDBCDrivers"/>
+	<classpathentry kind="lib" path="lib/antlr.jar"/>
+	<classpathentry kind="var" path="ANTLR_LIB_HOME/antlr_2.7.6.1.jar" sourcepath="ANTLR_LIB_HOME/antlrsrc.zip"/>
+	<classpathentry kind="var" path="ANTLR_LIB_HOME/antlrdebug_1.0.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

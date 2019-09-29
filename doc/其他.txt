@@ -1,0 +1,8 @@
+1说明：对于子查询要指定别名，比如select * from(show functioncolumns)是错的，而select * from(show functioncolumns) as t是对的
+
+2CownewSQL是为书服务的，不用太究细节
+3 DB2中执行ShowFunctionColumns语句“语句太长或者太复杂”的解决。
+UPDATE DATABASE CONFIGURATION
+  FOR XE USING
+    stmtheap 50000
+  IMMEDIATE;

@@ -1,0 +1,5 @@
+drop table T_StockFlow;
+drop table T_SaleInvoiceDetails;
+drop table T_SaleInvoice;
+drop table T_Person;
+drop table T_Material;

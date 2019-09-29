@@ -1,0 +1,35 @@
+(1)DATE_ADD:
+mysql:2参数为加秒；3参数：年、季、月、天、周、小时、分、秒、毫秒
+db2：2参数为加秒；3参数：年、季、月、天、周、小时、分、秒、毫秒
+mssql:2参数为加秒；3参数：年、季、月、天、周、小时、分、秒、毫秒
+oracle：2参数为加秒；3参数：年、月、天、小时、分、秒
+交集：年、月、天、小时、分、秒
+
+(2)DATEDIFF:
+mysql:天、周、小时、分、秒、毫秒
+db2:年、月、周、天、小时、分、秒、毫秒
+mssql:all
+oracle:年、季、月、周、天、小时、分、秒、毫秒
+交集：周、天、小时、分、秒、毫秒
+（3）DATENAME：
+mysql：年、季、月、DAYOFYEAR、天、周、WEEKDAY、小时、分、秒、毫秒
+db2：年、季、月、DAYOFYEAR、天、周、WEEKDAY、小时、分、秒、毫秒
+mssql:all
+oracle:all
+交集：all
+(4)showtables语句的差异性
+db2:select COLNAME as COLUMN_NAME, TYPENAME as DATA_TYPE,DEFAULT as DATA_DEFAULT,NULLS as NULLABLE from syscat.columns where TABNAME='表名'
+
+oracle:select COLUMN_NAME,DATA_TYPE,DATA_DEFAULT,NULLABLE  from all_tab_columns where TABLE_NAME ='表名'
+
+mysql:describe t_1
+Field,Type,Null,Key,Default,Extra
+
+sqlserver:
+SELECT syscols.name as COLUMN_NAME,st.name as DATA_TYPE,syscomm.text as DATA_DEFAULT,syscols.isnullable as NULLABLE
+FROM syscolumns syscols
+left join systypes st on syscols.xusertype=st.xusertype
+left join syscomments syscomm on syscols.cdefault=syscomm.id
+where syscols.id=OBJECT_ID(N'T_My')
+order by syscols.id,syscols.colorder
+(5)DB2不支持Drop column语句

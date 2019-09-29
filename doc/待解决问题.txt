@@ -1,0 +1,81 @@
+使用代码编织器兼容1.4(ok)
+所有语句中的关键字都大写(ok)
+多语句的支持(ok)
+对参数占位符“?”的支持(ok)
+有必要加（）的地方要加上，比如子查询(ok)
+对--注释和中文注释内容的支持(ok)
+union all的支持(ok)
+去掉对子增字段的支持(ok)
+完善文档、增加配置文件，方便试用(ok)
+CONVERT函数在各个翻译器中取值范围要一致(ok)
+将用枚举方式获得翻译器改为用字符串方式获取翻译器，参考MessageDigest(ok)
+支持Show Tables 和Show Functions，这样DataBaseMetaData就好搞了(ok)
+DataBaseMetaData（ok）
+支持存储过程调用（不翻译，在JDBC层支持）(ok)
+showfunctions,showtables可以为子查询的支持(ok)
+增加Show FunctionsColumn支持(ok)
+对show desc tablename的支持(ok)
+对AlterTable的支持(ok)
+
+支持“SELECT * FROM SYS.ISBPUM_USR_LIST”这样含有表空间前缀的表名
+封装，方便移植到python、C++等
+增加对DB2、HSQL、postgresql、firebird以及其他主流db的支持
+并把cownewpis做为cownewsql的killerapp来推广
+重构cownewsql，更加清晰,作废getLv2AST等方法
+先完善，把目前支持的这三个数据库测深、测透，然后等成熟以后再增加对其他数据库的支持
+对fulljoin的支持（mssql、orcl都支持，mysql不支持，但是可以模拟）
+自定义errorhandler，报错信息更加清晰
+和开源项目、公司合作等方式扩大宣传。
+
+直接翻译“//此处输入要翻译的SQL”（没有换行符）会OOM错误
+尝试支持Oracle 的Start With..... Connect by 语法
+CowNewSQL发布版的版本号问题
+用FunctionsMgr来改进checkParams方法，使得报错信息更加明确，也使的FunctionsMgr不被孤立，保证FunctionsMgr与MethodTranslator的同步更新
+更新文档
+对不同数据库字符串转义符的支持，比如MYSQL中支持'\'abc\''，而oracle就不支持
+DatabaseMetaData中对getSearchStringEscape提供统一的支持
+支持Informix、PostgreSQL、Sybase
+对select t.* from T_my t的支持
+对case ...when提供支持
+支持'b' is null、c is not null语法
+对TABLEEXIST语句的支持
+对Having语句的支持
+支持存储过程
+语法错误应该报异常，而不是“line 7:59: unexpected token: )”这样的控制台输出
+
+Oracle、DB2中也支持Date、Time类型，不要用TIMESTAMP来代替他们，这样很多时间函数处理都很麻烦，这可能是ANYSQL设计者的疏忽，要改过来。书中也要。（*********************）
+支持Having子句
+
+MYSQL中进行字符串连接的应该是Concat而不是||（Bug）
+
+round函数支持有bug
+select top 5 * from [bbs] order by tt (目前不支持[]这种表示法，powerdesign导出的都是这种格式)(bug)
+cownewsql停，以后只作为编译技术以及antlr的案例来讲
+rand()函数理解错误，当有一个参数的时候，那个参数为种子，而不是上限制
+
+oracle中使用两个日期的差来模拟DateDiff更方便
+Oracle中使用加减运算符比使用ADD_MONTHS进行dateadd更方便
+
+
+SELECT 
+	CASE 1 
+	WHEN 1 THEN 'one' 
+	WHEN 2 THEN 'two' 
+	ELSE 'more' 
+	END
+FROM T_Person
+
+
+SELECT 
+	CASE
+	WHEN FWeight<40 THEN 'thin' 
+	WHEN FWeight>50 THEN 'fat' 
+	ELSE 'ok' 
+	END
+FROM T_Person
+
+增加对CHECK约束的支持
+
+支持复制表/复制数据的语句，DuplicateTABLE t1,t2  DuplicateTABLE WITH DATA t1,t2 ，参考SQLCookBook69页
+
+datediff的实现存在大Bug，参考SQLCookBook重新实现。

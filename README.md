@@ -31,3 +31,7 @@ SELECT  TOP 10 * FROM T_Users WHERE DATEDIFF(Day, GETDATE(), GETDATE()) = 1
 SELECT * FROM T_Users WHERE DATEDIFF(NOW(), NOW()) = 1 LIMIT 0, 10 
 
 ```
+
+This project employs ANTLR to compile the grammar definition files sqlparser.g and sqltreeparser.g (under the folder com\cownew\cownewsql\ast\grammar) into SQLTreeParser.java, SQLLexer.java and other files.
+So this project depends on antlr and antlr studio, which is an Eclipse plugin.
+Please install [antlr studio](https://www.antlr.org/tools.html) plugin on your Eclipse.
